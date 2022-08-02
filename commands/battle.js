@@ -63,6 +63,7 @@ module.exports.run = async (client, message, args) => {
     battle.ennemi.eagleCaptain = 0
     battle.ennemi.eagleKing = 0
     battle.ennemi.eagleGod = 0
+    battle.battleMember = []
 
     if(eagleAmout >= 1) battle.ennemi.eagle = eagleAmout
     if(eagleCaptainAmout >= 1) battle.ennemi.eagleCaptain = eagleCaptainAmout

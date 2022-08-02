@@ -29,10 +29,10 @@ module.exports.run = async (client, message, args) => {
 
       function addOwl(player, owlSlot, hashtag){
         owlSlot.hashtagNumber = parseInt(hashtag)
-        owlSlot.health = Math.floor(Math.random() * 30)
-        owlSlot.defense = Math.floor(Math.random() * 5)
-        owlSlot.eva = Math.floor(Math.random() * 20)
-        owlSlot.attack = Math.floor(Math.random() * 12)
+        owlSlot.health = Math.floor(Math.random() * 30) + 7
+        owlSlot.defense = Math.floor(Math.random() * 5) + 1
+        owlSlot.eva = Math.floor(Math.random() * 20) + 1
+        owlSlot.attack = Math.floor(Math.random() * 12) + 3
         
         player.save()
         
