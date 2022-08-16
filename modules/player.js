@@ -6,6 +6,7 @@ const playerSchema = mongoose.Schema({
     slot: {
       owl1: {
         hashtagNumber: Number,
+        status: Number,
         health: Number,
         defense: Number,
         eva: Number,
@@ -13,6 +14,7 @@ const playerSchema = mongoose.Schema({
       }, 
       owl2: {
         hashtagNumber: Number,
+        status: Number,
         health: Number,
         defense: Number,
         eva: Number,
@@ -20,6 +22,7 @@ const playerSchema = mongoose.Schema({
       },
       owl3: {
         hashtagNumber: Number,
+        status: Number,
         health: Number,
         defense: Number,
         eva: Number,
@@ -27,6 +30,7 @@ const playerSchema = mongoose.Schema({
       }, 
       owl4: {
         hashtagNumber: Number,
+        status: Number,
         health: Number,
         defense: Number,
         eva: Number,
@@ -34,6 +38,7 @@ const playerSchema = mongoose.Schema({
       }, 
       owl5: {
         hashtagNumber: Number,
+        status: Number,
         health: Number,
         defense: Number,
         eva: Number,

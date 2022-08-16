@@ -22,6 +22,7 @@ module.exports.run = async (client, message, args) => {
                     slot: {
                         owl1: {
                             hashtagNumber: -1,
+                            status: 1,
                             health: 0,
                             defense: 0,
                             eva: 0,
@@ -29,6 +30,7 @@ module.exports.run = async (client, message, args) => {
                         }, 
                         owl2: {
                             hashtagNumber: -1,
+                            status: 1,
                             health: 0,
                             defense: 0,
                             eva: 0,
@@ -36,6 +38,7 @@ module.exports.run = async (client, message, args) => {
                         },
                         owl3: {
                             hashtagNumber: -1,
+                            status: 1,
                             health: 0,
                             defense: 0,
                             eva: 0,
@@ -43,6 +46,7 @@ module.exports.run = async (client, message, args) => {
                         }, 
                         owl4: {
                             hashtagNumber: -1,
+                            status: 1,
                             health: 0,
                             defense: 0,
                             eva: 0,
@@ -50,6 +54,7 @@ module.exports.run = async (client, message, args) => {
                         }, 
                         owl5: {
                             hashtagNumber: -1,
+                            status: 1,
                             health: 0,
                             defense: 0,
                             eva: 0,
@@ -68,7 +73,7 @@ module.exports.run = async (client, message, args) => {
         }
     );
 
-    if(user.id == "564050802566627358" || user.id == "369531783471038474"){
+    if(user.id == "564050802566627358" || user.id == "369531783471038474" || user.id == "792916125784342578" || user.id == "162596374163095552" || user.id == "162595815670546433"){
         console.log(user.id)
         BATTLE.findOne({ battleCreatorID: user.id },
             (err, battle) => {

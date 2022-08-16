@@ -1,7 +1,7 @@
 const Discord = require('discord.js');
 
 module.exports.run = async (client, message, args) => {
-  message.inlineReply('Pong !')
+  message.reply('Pong !')
 }
 
 module.exports.info = {

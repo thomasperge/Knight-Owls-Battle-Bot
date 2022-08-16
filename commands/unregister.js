@@ -21,6 +21,7 @@ module.exports.run = async (client, message, args) => {
                 console.log(owl)
 
                 owl.hashtagNumber = -1
+                owl.status = 1
                 owl.health = 0
                 owl.defense = 0
                 owl.eva = 0

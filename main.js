@@ -54,8 +54,8 @@ client.on('messageCreate', async (message) => {
 
 // BOT READY
 client.on('ready', () => {
-   console.log('RPG Bot: Ready !');
-   client.user.setActivity(`rpg helping | ghelp`);
+   console.log('Knight Owls Bot: Ready !');
+   client.user.setActivity(`knight owls | !start`);
 });
 
 client.login(config.token);

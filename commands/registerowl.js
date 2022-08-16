@@ -29,6 +29,7 @@ module.exports.run = async (client, message, args) => {
 
       function addOwl(player, owlSlot, hashtag){
         owlSlot.hashtagNumber = parseInt(hashtag)
+        owlSlot.status = 1,
         owlSlot.health = Math.floor(Math.random() * 30) + 7
         owlSlot.defense = Math.floor(Math.random() * 5) + 1
         owlSlot.eva = Math.floor(Math.random() * 20) + 1
@@ -67,5 +68,5 @@ module.exports.run = async (client, message, args) => {
 };
 
 module.exports.info = {
-  names: ['registerowl', 'ro', 'registero', 'rowl', 'newowl', 'register'],
+  names: ['registerowl', 'ro', 'registero', 'rowl', 'newowl', 'register', 'owlregister', 'registero', 'owlr'],
 };

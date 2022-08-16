@@ -1,0 +1,34 @@
+{
+    "eagle":{
+        "attackMax": 14,
+        "attackMin": 5,
+        "defenseMax": 6,
+        "defenseMin": 0,
+        "healthMax": 22,
+        "healthMin": 9
+    },
+    "captainEagle":{
+        "attackMax": 26,
+        "attackMin": 13,
+        "defenseMax": 11,
+        "defenseMin": 3,
+        "healthMax": 60,
+        "healthMin": 25
+    },
+    "kingEagle":{
+        "attackMax": 45,
+        "attackMin": 28,
+        "defenseMax": 19,
+        "defenseMin": 7,
+        "healthMax": 95,
+        "healthMin": 49
+    },
+    "godEagle":{
+        "attackMax": 80,
+        "attackMin": 58,
+        "defenseMax": 31,
+        "defenseMin": 12,
+        "healthMax": 210,
+        "healthMin": 110
+    }
+}
