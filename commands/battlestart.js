@@ -4,6 +4,7 @@ const CONFIGCOOLDOWN = require('../config.json')
 const CONFIGEAGLE = require('../config/configEagle.json')
 const { bold, inlineCode, userMention, codeBlock, underscore, ButtonBuilder, EmbedBuilder } = require('@discordjs/builders');
 const { MessageActionRow, MessageButton, MessageEmbed } = require('discord.js');
+const { numStr } = require('../functionNumber/fixedNumer.js');
 
 module.exports.run = async (client, message, args) => {
     var user = message.author
@@ -92,27 +93,27 @@ module.exports.run = async (client, message, args) => {
                 if(randomOwl == 0) {
                     owlStatus(player, player.slot.owl1, 'battle')
                     stats = `**Knigth Owl #${player.slot.owl1.hashtagNumber}**`
-                    allOwl.push({hashtag: player.slot.owl1.hashtagNumber, attack: player.slot.owl1.attackHigh, attackLow: player.slot.owl1.attackLow, defense: player.slot.owl1.defenseHigh, defenseLow: player.slot.owl1.defenseLow, health: player.slot.owl1.health})
+                    allOwl.push({hashtag: player.slot.owl1.hashtagNumber, attackHigh: player.slot.owl1.attackHigh, attackLow: player.slot.owl1.attackLow, defenseHigh: player.slot.owl1.defenseHigh, defenseLow: player.slot.owl1.defenseLow, health: player.slot.owl1.health})
                 };
                 if(randomOwl == 1) {
                     owlStatus(player, player.slot.owl2, 'battle')
                     stats = `**Knigth Owl #${player.slot.owl2.hashtagNumber}**`
-                    allOwl.push({hashtag: player.slot.owl2.hashtagNumber, attack: player.slot.owl2.attackHigh, attackLow: player.slot.owl2.attackLow, defense: player.slot.owl2.defenseHigh, defenseLow: player.slot.owl2.defenseLow, health: player.slot.owl2.health})
+                    allOwl.push({hashtag: player.slot.owl2.hashtagNumber, attackHigh: player.slot.owl2.attackHigh, attackLow: player.slot.owl2.attackLow, defenseHigh: player.slot.owl2.defenseHigh, defenseLow: player.slot.owl2.defenseLow, health: player.slot.owl2.health})
                 };
                 if(randomOwl == 2) {
                     owlStatus(player, player.slot.owl3, 'battle')
                     stats = `**Knigth Owl #${player.slot.owl3.hashtagNumber}**`
-                    allOwl.push({hashtag: player.slot.owl3.hashtagNumber, attack: player.slot.owl3.attackHigh, attackLow: player.slot.owl3.attackLow, defense: player.slot.owl3.defenseHigh, defenseLow: player.slot.owl3.defenseLow, health: player.slot.owl3.health})
+                    allOwl.push({hashtag: player.slot.owl3.hashtagNumber, attackHigh: player.slot.owl3.attackHigh, attackLow: player.slot.owl3.attackLow, defenseHigh: player.slot.owl3.defenseHigh, defenseLow: player.slot.owl3.defenseLow, health: player.slot.owl3.health})
                 };
                 if(randomOwl == 3) {
                     owlStatus(player, player.slot.owl4, 'battle')
                     stats = `**Knigth Owl #${player.slot.owl4.hashtagNumber}**`
-                    allOwl.push({hashtag: player.slot.owl4.hashtagNumber, attack: player.slot.owl4.attackHigh, attackLow: player.slot.owl4.attackLow, defense: player.slot.owl4.defenseHigh, defenseLow: player.slot.owl4.defenseLow, health: player.slot.owl4.health})
+                    allOwl.push({hashtag: player.slot.owl4.hashtagNumber, attackHigh: player.slot.owl4.attackHigh, attackLow: player.slot.owl4.attackLow, defenseHigh: player.slot.owl4.defenseHigh, defenseLow: player.slot.owl4.defenseLow, health: player.slot.owl4.health})
                 };
                 if(randomOwl >= 4) {
                     owlStatus(player, player.slot.owl5, 'battle')
                     stats = `**Knigth Owl #${player.slot.owl5.hashtagNumber}**`
-                    allOwl.push({hashtag: player.slot.owl5.hashtagNumber, attack: player.slot.owl5.attackHigh, attackLow: player.slot.owl5.attackLow, defense: player.slot.owl5.defenseHigh, defenseLow: player.slot.owl5.defenseLow, health: player.slot.owl5.health})
+                    allOwl.push({hashtag: player.slot.owl5.hashtagNumber, attackHigh: player.slot.owl5.attackHigh, attackLow: player.slot.owl5.attackLow, defenseHigh: player.slot.owl5.defenseHigh, defenseLow: player.slot.owl5.defenseLow, health: player.slot.owl5.health})
                 };
             };
 
@@ -265,16 +266,16 @@ module.exports.run = async (client, message, args) => {
             function owlDefend(){
                 for(const owl of allOwl){
                     var randomBoss = Math.floor(Math.random() * allBossStats.length);
-                    var damage = Math.floor(Math.random() * (allBossStats[randomBoss].attack - ((Math.random() * owl.defenseHigh) + owl.defenseLow)));
+                    var damage = (Math.random() * (allBossStats[randomBoss].attack - ((Math.random() * owl.defenseHigh) + owl.defenseLow)));
                     owl.health -= damage
 
                     if(owl.health <= 0){
-                        bossDead += `**Knigth Owl #${owl.hashtag}** dead\n`
+                        owlDead += `**Knigth Owl #${owl.hashtag}** dead\n`
 
-                        messageEmbed += `${inlineCode("☠️")} **Knigth Owl #${owl.hashtag}** died by **${allBossStats[randomBoss].name}** (${inlineCode(damage + "🔥")})\n`
+                        messageEmbed += `${inlineCode("☠️")} **Knigth Owl #${owl.hashtag}** died by **${allBossStats[randomBoss].name}** (${inlineCode(numStr(damage) + "🔥")})\n`
                         allOwl.splice(allOwl.indexOf(owl.hashtag), 1);
                     } else {
-                        messageEmbed += `**Knigth Owl #${owl.hashtag}** loses ${inlineCode(damage + "❤️")} from **${allBossStats[randomBoss].name}**\n`
+                        messageEmbed += `**Knigth Owl #${owl.hashtag}** loses ${inlineCode(numStr(damage) + "❤️")} from **${allBossStats[randomBoss].name}**\n`
                     }
                 };
                 return messageEmbed
@@ -284,18 +285,18 @@ module.exports.run = async (client, message, args) => {
             function owlAttack(){
                 for(const owl of allOwl){
 
-                    var damageOwl = Math.floor(Math.random() * owl.attackHigh) + owl.attackLow
+                    var damageOwl = (Math.random() * owl.attackHigh) + owl.attackLow
                     var randomBoss = Math.floor(Math.random() * allBossStats.length);
 
                     allBossStats[randomBoss].health -= damageOwl
 
                     if(allBossStats[randomBoss].health <= 0){
-                        owlDead += `**${allBossStats[randomBoss].name}** dead\n`
+                        bossDead += `**${allBossStats[randomBoss].name}** dead\n`
 
                         messageEmbed += `${inlineCode("☠️")} **Knigth Owl #${owl.hashtag}** kills **${allBossStats[randomBoss].name}**\n`
                         allBossStats.splice(allBossStats.indexOf(allBossStats[randomBoss].name), 1);
                     } else {
-                        messageEmbed += `**Knigth Owl #${owl.hashtag}** deals ${inlineCode(damageOwl + "🔥")} to **${allBossStats[randomBoss].name}**\n`
+                        messageEmbed += `**Knigth Owl #${owl.hashtag}** deals ${inlineCode(numStr(damageOwl) + "🔥")} to **${allBossStats[randomBoss].name}**\n`
                     }
                 }
                 if(allOwl.length == 0 || allOwl.length == undefined){
@@ -309,20 +310,23 @@ module.exports.run = async (client, message, args) => {
                 var messageUserStatus = ``
                 
                 for(const bossStatus of allBossStats){
-                    if(bossStatus.health <= 0){
+                    if(bossStatus.health <= 0 || bossStatus == undefined){
                         bossStatus.health = 0
-                        messageBossStatus += `**${bossStatus.name}** ${inlineCode(bossStatus.health + "❤️")} (dead)\n`
-                    } else messageBossStatus += `**${bossStatus.name}** ${inlineCode(bossStatus.health + "❤️")}\n`
-                }
+                        bossDead += `**${bossStatus.name}** ${inlineCode(numStr(bossStatus.health) + "❤️")} (dead)\n`
+                    } else messageBossStatus += `**${bossStatus.name}** ${inlineCode(numStr(bossStatus.health) + "❤️")}\n`
+                };
 
                 for(const owl of allOwl){
-                    if(owl.health <= 0){
+                    if(owl.health <= 0 || owl == undefined){
                         owl.health = 0
-                        messageUserStatus += `**${owl.name}** ${inlineCode(owl.health + "❤️")} (dead)\n`
-                    } else messageUserStatus += `**Knigth Owl #${owl.hashtag}** ${inlineCode(owl.health + "❤️")}\n`
-                }
+                        owlDead += `**${owl.name}** ${inlineCode(numStr(owl.health) + "❤️")} (dead)\n`
+                    } else messageUserStatus += `**Knigth Owl #${owl.hashtag}** ${inlineCode(numStr(owl.health) + "❤️")}\n`
+                };
 
-                if(messageUserStatus.length == 0 || messageUserStatus == '' || messageUserStatus == ' ' || messageUserStatus == undefined) messageUserStatus = `All the owls are dead`
+                if(messageUserStatus.length == 0 || messageUserStatus == '' || messageUserStatus == ' ' || messageUserStatus == undefined) {
+                    messageUserStatus = `All the owls are dead`
+                    owlDead = ``
+                };
                 
                 messageBossStatus += bossDead
                 messageUserStatus += owlDead
@@ -379,6 +383,8 @@ module.exports.run = async (client, message, args) => {
 
                 await sleep(CONFIGCOOLDOWN.cooldows);
             };
+
+            var healthOwlRest = ``
 
             // === Check Winer ===
             if(checkWinner(allOwl, allBossStats) == 'eagle'){
