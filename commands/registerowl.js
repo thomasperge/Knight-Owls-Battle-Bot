@@ -20,7 +20,7 @@ module.exports.run = async (client, message, args) => {
     };
   };
 
-  if((hashtag == undefined || hashtag == '' || hashtag == ' ' || isNaN(hashtag)) && parseInt(hashtag) >= 0 && parseInt(hashtag) <= 1999) return message.reply(`${inlineCode("🪧")} Wrong command, use : ${inlineCode("!registerowl <@user> #")}`)
+  if((hashtag == undefined || hashtag == '' || hashtag == ' ' || isNaN(hashtag)) && parseInt(hashtag) >= 0 && parseInt(hashtag) <= 299) return message.reply(`${inlineCode("🪧")} Wrong command, use : ${inlineCode("!registerowl <@user> #")} (max 300 owl)`)
   else if(userInput == undefined || userInput == ' ' || userInput == '') return message.reply(`${inlineCode("🪧")} Wrong command, use : ${inlineCode("!registerowl <@user> #")}`)
   else {
     let ALLPLAYER = await PLAYER.find();
@@ -32,10 +32,11 @@ module.exports.run = async (client, message, args) => {
         owlSlot.hashtagNumber = parseInt(hashtag)
         owlSlot.status = 1,
         owlSlot.health = OWLCONFIG.allOwl[parseInt(hashtag) - 1].health
-        owlSlot.defenseLow = OWLCONFIG.allOwl[parseInt(hashtag) - 1].health
-        owlSlot.defenseLow = OWLCONFIG.allOwl[parseInt(hashtag) - 1].health
-        owlSlot.eva = Math.floor(Math.random() * 20) + 1
-        owlSlot.attack = Math.floor(Math.random() * 12) + 3
+        owlSlot.defenseLow = OWLCONFIG.allOwl[parseInt(hashtag) - 1].defense_low
+        owlSlot.defenseHigh = OWLCONFIG.allOwl[parseInt(hashtag) - 1].defense_high
+        owlSlot.attackLow = OWLCONFIG.allOwl[parseInt(hashtag) - 1].attack_low
+        owlSlot.attackHigh = OWLCONFIG.allOwl[parseInt(hashtag) - 1].attack_high
+        owlSlot.eva = OWLCONFIG.allOwl[parseInt(hashtag) - 1].defense_high
         
         player.save()
         
