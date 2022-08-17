@@ -1,5 +1,6 @@
 const Discord = require('discord.js');
 const PLAYER = require('../modules/player.js')
+const OWLCONFIG = require('../config/configOwl.json')
 const { MessageActionRow, MessageButton, MessageEmbed } = require('discord.js');
 const { bold, inlineCode, codeBlock } = require('@discordjs/builders');
 
@@ -30,8 +31,9 @@ module.exports.run = async (client, message, args) => {
       function addOwl(player, owlSlot, hashtag){
         owlSlot.hashtagNumber = parseInt(hashtag)
         owlSlot.status = 1,
-        owlSlot.health = Math.floor(Math.random() * 30) + 7
-        owlSlot.defense = Math.floor(Math.random() * 5) + 1
+        owlSlot.health = OWLCONFIG.allOwl[parseInt(hashtag) - 1].health
+        owlSlot.defenseLow = OWLCONFIG.allOwl[parseInt(hashtag) - 1].health
+        owlSlot.defenseLow = OWLCONFIG.allOwl[parseInt(hashtag) - 1].health
         owlSlot.eva = Math.floor(Math.random() * 20) + 1
         owlSlot.attack = Math.floor(Math.random() * 12) + 3
         
