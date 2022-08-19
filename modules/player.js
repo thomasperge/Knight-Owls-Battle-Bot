@@ -55,6 +55,11 @@ const playerSchema = mongoose.Schema({
         eva: Number,
       }, 
     },
+    loot:{
+      eagleHead: Number,
+      eagleWing: Number,
+      eaglealon: Number
+    }
 })
 
 module.exports = mongoose.model('Player', playerSchema)

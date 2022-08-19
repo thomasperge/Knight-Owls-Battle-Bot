@@ -61,6 +61,11 @@ module.exports.run = async (client, message, args) => {
                             attack: 0,
                         }, 
                     },
+                    loot:{
+                        eagleHead: 0,
+                        eagleWing: 0,
+                        eaglealon: 0
+                    }
                 })
                 playerSchema.save()
 

@@ -77,40 +77,40 @@ module.exports.run = async (client, message, args) => {
             var stats = ``
 
             var player = await PLAYER.findOne({ userId : user })
-            var owlAmout = 0
+            var owlList = []
 
-            if(player.slot.owl1.hashtagNumber != -1 && player.slot.owl1.status == 1) owlAmout += 1
-            if(player.slot.owl2.hashtagNumber != -1 && player.slot.owl2.status == 1) owlAmout += 1
-            if(player.slot.owl3.hashtagNumber != -1 && player.slot.owl3.status == 1) owlAmout += 1
-            if(player.slot.owl4.hashtagNumber != -1 && player.slot.owl4.status == 1) owlAmout += 1
-            if(player.slot.owl5.hashtagNumber != -1 && player.slot.owl5.status == 1) owlAmout += 1
+            if(player.slot.owl1.hashtagNumber != -1 && player.slot.owl1.status == 1) owlList.push("1")
+            if(player.slot.owl2.hashtagNumber != -1 && player.slot.owl2.status == 1) owlList.push("2")
+            if(player.slot.owl3.hashtagNumber != -1 && player.slot.owl3.status == 1) owlList.push("3")
+            if(player.slot.owl4.hashtagNumber != -1 && player.slot.owl4.status == 1) owlList.push("4")
+            if(player.slot.owl5.hashtagNumber != -1 && player.slot.owl5.status == 1) owlList.push("5")
 
-            var randomOwl = Math.floor(Math.random() * owlAmout )
+            var randomOwl = Math.floor(Math.random() * owlList.length)
 
-            if(owlAmout == 0) stats = `**No Knigth Owl**`
-            if(owlAmout >= 1){
+            if(owlList.length == 0) stats = `**No Knigth Owl**`
+            if(owlList.length >= 1){
 
-                if(randomOwl == 0) {
+                if(owlList[randomOwl] == "1") {
                     owlStatus(player, player.slot.owl1, 'battle')
                     stats = `**Knigth Owl #${player.slot.owl1.hashtagNumber}**`
                     allOwl.push({hashtag: player.slot.owl1.hashtagNumber, attackHigh: player.slot.owl1.attackHigh, attackLow: player.slot.owl1.attackLow, defenseHigh: player.slot.owl1.defenseHigh, defenseLow: player.slot.owl1.defenseLow, health: player.slot.owl1.health, eva: player.slot.owl1.eva})
                 };
-                if(randomOwl == 1) {
+                if(owlList[randomOwl] == "2") {
                     owlStatus(player, player.slot.owl2, 'battle')
                     stats = `**Knigth Owl #${player.slot.owl2.hashtagNumber}**`
                     allOwl.push({hashtag: player.slot.owl2.hashtagNumber, attackHigh: player.slot.owl2.attackHigh, attackLow: player.slot.owl2.attackLow, defenseHigh: player.slot.owl2.defenseHigh, defenseLow: player.slot.owl2.defenseLow, health: player.slot.owl2.health, eva: player.slot.owl2.eva})
                 };
-                if(randomOwl == 2) {
+                if(owlList[randomOwl] == "3") {
                     owlStatus(player, player.slot.owl3, 'battle')
                     stats = `**Knigth Owl #${player.slot.owl3.hashtagNumber}**`
                     allOwl.push({hashtag: player.slot.owl3.hashtagNumber, attackHigh: player.slot.owl3.attackHigh, attackLow: player.slot.owl3.attackLow, defenseHigh: player.slot.owl3.defenseHigh, defenseLow: player.slot.owl3.defenseLow, health: player.slot.owl3.health, eva: player.slot.owl3.eva})
                 };
-                if(randomOwl == 3) {
+                if(owlList[randomOwl] == "4") {
                     owlStatus(player, player.slot.owl4, 'battle')
                     stats = `**Knigth Owl #${player.slot.owl4.hashtagNumber}**`
                     allOwl.push({hashtag: player.slot.owl4.hashtagNumber, attackHigh: player.slot.owl4.attackHigh, attackLow: player.slot.owl4.attackLow, defenseHigh: player.slot.owl4.defenseHigh, defenseLow: player.slot.owl4.defenseLow, health: player.slot.owl4.health, eva: player.slot.owl4.eva})
                 };
-                if(randomOwl >= 4) {
+                if(owlList[randomOwl] >= "5") {
                     owlStatus(player, player.slot.owl5, 'battle')
                     stats = `**Knigth Owl #${player.slot.owl5.hashtagNumber}**`
                     allOwl.push({hashtag: player.slot.owl5.hashtagNumber, attackHigh: player.slot.owl5.attackHigh, attackLow: player.slot.owl5.attackLow, defenseHigh: player.slot.owl5.defenseHigh, defenseLow: player.slot.owl5.defenseLow, health: player.slot.owl5.health, eva: player.slot.owl5.eva})
@@ -271,8 +271,11 @@ module.exports.run = async (client, message, args) => {
                     var randomEva = Math.random() * 100
 
                     if(owl.eva >= randomEva){
-                        messageEmbed = `**Knigth Owl #${owl.hashtag}** dodges the attack of the **${allBossStats[randomBoss].name}**`
+                        messageEmbed = `**Knigth Owl #${owl.hashtag}** dodges the attack of the **${allBossStats[randomBoss].name}**\n`
+                        console.log('<Esquive> de : #' + owl.hashtag)
                     } else {
+                        console.log('<Defense de> : #' + owl.hashtag)
+
                         owl.health -= damage
 
                         if(owl.health <= 0){
@@ -295,17 +298,21 @@ module.exports.run = async (client, message, args) => {
                     var damageOwl = (Math.random() * owl.attackHigh) + owl.attackLow
                     var randomBoss = Math.floor(Math.random() * allBossStats.length);
 
-                    allBossStats[randomBoss].health -= damageOwl
+                    console.log(allBossStats[randomBoss])
 
-                    if(allBossStats[randomBoss].health <= 0){
-                        bossDead += `**${allBossStats[randomBoss].name}** dead\n`
-
-                        messageEmbed += `${inlineCode("☠️")} **Knigth Owl #${owl.hashtag}** kills **${allBossStats[randomBoss].name}**\n`
-                        allBossStats.splice(allBossStats.indexOf(allBossStats[randomBoss].name), 1);
+                    if(allBossStats[randomBoss] == undefined){
+                        messageEmbed = `${inlineCode("☠️")} All the bosses have been killed!`
                     } else {
-                        messageEmbed += `**Knigth Owl #${owl.hashtag}** deals ${inlineCode(numStr(damageOwl) + "🔥")} to **${allBossStats[randomBoss].name}**\n`
+                        allBossStats[randomBoss].health -= damageOwl
+
+                        if(allBossStats[randomBoss].health <= 0){
+                            messageEmbed += `${inlineCode("☠️")} **Knigth Owl #${owl.hashtag}** kills **${allBossStats[randomBoss].name}**\n`
+                            allBossStats.splice(allBossStats.indexOf(allBossStats[randomBoss].name), 1);
+                        } else {
+                            messageEmbed += `**Knigth Owl #${owl.hashtag}** deals ${inlineCode(numStr(damageOwl) + "🔥")} to **${allBossStats[randomBoss].name}**\n`
+                        }
                     }
-                }
+                };
                 if(allOwl.length == 0 || allOwl.length == undefined){
                     messageEmbed += `${inlineCode("☠️")} **All the owls are dead**, none can attack`
                 }
@@ -315,6 +322,10 @@ module.exports.run = async (client, message, args) => {
             function status(){
                 var messageBossStatus = ``
                 var messageUserStatus = ``
+
+                if(allBossStats.length == 0 || allBossStats == undefined){
+                    messageBossStatus = `${inlineCode("☠️")} All the bosses have been killed`
+                }
                 
                 for(const bossStatus of allBossStats){
                     if(bossStatus.health <= 0 || bossStatus == undefined){
@@ -398,11 +409,11 @@ module.exports.run = async (client, message, args) => {
                 // == Status Owl ==
                 for(const user of allMember){
                     var player = await PLAYER.findOne({ userId : user })
-                    if(randomOwl == 0) owlStatus(player, player.slot.owl1, 'dead'); else owlStatus(player, player.slot.owl1, 'figth')
-                    if(randomOwl == 1) owlStatus(player, player.slot.owl2, 'dead'); else owlStatus(player, player.slot.owl2, 'figth')
-                    if(randomOwl == 2) owlStatus(player, player.slot.owl3, 'dead'); else owlStatus(player, player.slot.owl3, 'figth')
-                    if(randomOwl == 3) owlStatus(player, player.slot.owl4, 'dead'); else owlStatus(player, player.slot.owl4, 'figth')
-                    if(randomOwl >= 4) owlStatus(player, player.slot.owl5, 'dead'); else owlStatus(player, player.slot.owl5, 'figth')
+                    if(owlList[randomOwl] == "1") owlStatus(player, player.slot.owl1, 'dead'); else owlStatus(player, player.slot.owl1, 'figth')
+                    if(owlList[randomOwl] == "2") owlStatus(player, player.slot.owl2, 'dead'); else owlStatus(player, player.slot.owl2, 'figth')
+                    if(owlList[randomOwl] == "3") owlStatus(player, player.slot.owl3, 'dead'); else owlStatus(player, player.slot.owl3, 'figth')
+                    if(owlList[randomOwl] == "4") owlStatus(player, player.slot.owl4, 'dead'); else owlStatus(player, player.slot.owl4, 'figth')
+                    if(owlList[randomOwl] == "5") owlStatus(player, player.slot.owl5, 'dead'); else owlStatus(player, player.slot.owl5, 'figth')
                 };
 
                 var eagleWinnerEmbed = new MessageEmbed()
@@ -418,17 +429,18 @@ module.exports.run = async (client, message, args) => {
                 // == Status Owl ==
                 for(const user of allMember){
                     var player = await PLAYER.findOne({ userId : user })
-                    if(randomOwl == 0) owlStatus(player, player.slot.owl1, 'fight') 
-                    if(randomOwl == 1) owlStatus(player, player.slot.owl2, 'fight')
-                    if(randomOwl == 2) owlStatus(player, player.slot.owl3, 'fight')
-                    if(randomOwl == 3) owlStatus(player, player.slot.owl4, 'fight')
-                    if(randomOwl >= 4) owlStatus(player, player.slot.owl5, 'fight')
+                    if(owlList[randomOwl] == "1") owlStatus(player, player.slot.owl1, 'fight') 
+                    if(owlList[randomOwl] == "2") owlStatus(player, player.slot.owl2, 'fight')
+                    if(owlList[randomOwl] == "3") owlStatus(player, player.slot.owl3, 'fight')
+                    if(owlList[randomOwl] == "4") owlStatus(player, player.slot.owl4, 'fight')
+                    if(owlList[randomOwl] == "5") owlStatus(player, player.slot.owl5, 'fight')
+                    console.log("=======> : ", player)
                 }
 
                 for(const owl of allOwl){
                     if(owl.health <= 0) owl.health = 0
                     healthOwlRest += `**Knigth Owl #${owl.hashtag}** (${inlineCode("❤️")} : ${inlineCode(owl.health)})`
-                }
+                };
 
                 var playerWinnerEmbed = new MessageEmbed()
                     .setColor('#0de61b')

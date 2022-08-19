@@ -9,9 +9,6 @@ module.exports.run = async (client, message, args) => {
   var userInput = message.mentions.users.first();
   var hashtag = args[1]
 
-  let player = await PLAYER.findOne({userId: userInput.id})
-  if(!player) return message.reply(`${inlineCode("🪧")} The mentioned user has not started Knigth Owl : ${inlineCode("!start")}`)
-
   function hastagAlreadyTaken(player, hashtag){
     for(const allPlayer of player){
       if(allPlayer.slot.owl1.hashtagNumber == parseInt(hashtag)) return true
@@ -24,8 +21,13 @@ module.exports.run = async (client, message, args) => {
   };
 
   if((hashtag == undefined || hashtag == '' || hashtag == ' ' || isNaN(hashtag)) && parseInt(hashtag) >= 0 && parseInt(hashtag) <= 299) return message.reply(`${inlineCode("🪧")} Wrong command, use : ${inlineCode("!registerowl <@user> #")} (max 300 owl)`)
-  else if(userInput == undefined || userInput == ' ' || userInput == '') return message.reply(`${inlineCode("🪧")} Wrong command, use : ${inlineCode("!registerowl <@user> #")}`)
+  if(userInput == undefined || userInput == ' ' || userInput == '') return message.reply(`${inlineCode("🪧")} Wrong command, use : ${inlineCode("!registerowl <@user> #")}`)
   else {
+
+    let player = await PLAYER.findOne({userId: userInput.id})
+    if(!player) return message.reply(`${inlineCode("🪧")} The mentioned user has not started Knigth Owl : ${inlineCode("!start")}`)
+
+
     let ALLPLAYER = await PLAYER.find();
 
     if(hastagAlreadyTaken(ALLPLAYER, hashtag) == false){
@@ -39,7 +41,7 @@ module.exports.run = async (client, message, args) => {
         owlSlot.defenseHigh = OWLCONFIG.allOwl[parseInt(hashtag) - 1].defense_high
         owlSlot.attackLow = OWLCONFIG.allOwl[parseInt(hashtag) - 1].attack_low
         owlSlot.attackHigh = OWLCONFIG.allOwl[parseInt(hashtag) - 1].attack_high
-        owlSlot.eva = OWLCONFIG.allOwl[parseInt(hashtag) - 1].defense_high
+        owlSlot.eva = OWLCONFIG.allOwl[parseInt(hashtag) - 1].evasion
         
         player.save()
         

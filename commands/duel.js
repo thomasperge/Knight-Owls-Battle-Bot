@@ -49,84 +49,83 @@ module.exports.run = async (client, message, args) => {
         // <=== Get Random Owl of Player 1 ===>
         var owlAmoutPlayer = 0
         var statsPlayer = ``
+        var owlListPlayer = []
 
-        if(player.slot.owl1.hashtagNumber != -1 && player.slot.owl1.status == 1) owlAmoutPlayer += 1
-        if(player.slot.owl2.hashtagNumber != -1 && player.slot.owl2.status == 1) owlAmoutPlayer += 1
-        if(player.slot.owl3.hashtagNumber != -1 && player.slot.owl3.status == 1) owlAmoutPlayer += 1
-        if(player.slot.owl4.hashtagNumber != -1 && player.slot.owl4.status == 1) owlAmoutPlayer += 1
-        if(player.slot.owl5.hashtagNumber != -1 && player.slot.owl5.status == 1) owlAmoutPlayer += 1
+        if(player.slot.owl1.hashtagNumber != -1 && player.slot.owl1.status == 1) owlListPlayer.push("1")
+        if(player.slot.owl2.hashtagNumber != -1 && player.slot.owl2.status == 1) owlListPlayer.push("2")
+        if(player.slot.owl3.hashtagNumber != -1 && player.slot.owl3.status == 1) owlListPlayer.push("3")
+        if(player.slot.owl4.hashtagNumber != -1 && player.slot.owl4.status == 1) owlListPlayer.push("4")
+        if(player.slot.owl5.hashtagNumber != -1 && player.slot.owl5.status == 1) owlListPlayer.push("5")
 
-        var randomOwlPlayer = Math.floor(Math.random() * owlAmoutPlayer)
-        var owlUser = []
+        var randomOwlPlayer = Math.floor(Math.random() * owlListPlayer.length)
 
-        if(owlAmoutPlayer == 0) statsPlayer = `**No Knight Owl**`
-        if(owlAmoutPlayer >= 1){
+        if(owlListPlayer.length == 0) statsPlayer = `**No Knight Owl**`
+        if(owlListPlayer.length >= 1){
 
-            if(randomOwlPlayer == 0) {
+            if(owlListPlayer[randomOwlPlayer] == "1") {
                 owlStatus(player, player.slot.owl1, 'battle')
                 statsPlayer = `<@${user.id}> takes his **Knight Owl #${player.slot.owl1.hashtagNumber}**\n`
                 owlUser.push({hashtag: player.slot.owl1.hashtagNumber, attackHigh: player.slot.owl1.attackHigh, attackLow: player.slot.owl1.attackLow, defenseHigh: player.slot.owl1.defenseHigh, defenseLow: player.slot.owl1.defenseLow, health: player.slot.owl1.health, eva: player.slot.owl1.eva})
             };
-            if(randomOwlPlayer == 1) {
+            if(owlListPlayer[randomOwlPlayer] == "2") {
                 owlStatus(player, player.slot.owl2, 'battle')
                 statsPlayer = `<@${user.id}> takes his **Knight Owl #${player.slot.owl2.hashtagNumber}**\n`
                 owlUser.push({hashtag: player.slot.owl2.hashtagNumber, attackHigh: player.slot.owl2.attackHigh, attackLow: player.slot.owl2.attackLow, defenseHigh: player.slot.owl2.defenseHigh, defenseLow: player.slot.owl2.defenseLow, health: player.slot.owl2.health, eva: player.slot.owl2.eva})
             };
-            if(randomOwlPlayer == 2) {
+            if(owlListPlayer[randomOwlPlayer] == "3") {
                 owlStatus(player, player.slot.owl3, 'battle')
                 statsPlayer = `<@${user.id}> takes his **Knight Owl #${player.slot.owl3.hashtagNumber}**\n`
                 owlUser.push({hashtag: player.slot.owl3.hashtagNumber, attackHigh: player.slot.owl3.attackHigh, attackLow: player.slot.owl3.attackLow, defenseHigh: player.slot.owl3.defenseHigh, defenseLow: player.slot.owl3.defenseLow, health: player.slot.owl3.health, eva: player.slot.owl3.eva})
             };
-            if(randomOwlPlayer == 3) {
+            if(owlListPlayer[randomOwlPlayer] == "4") {
                 owlStatus(player, player.slot.owl4, 'battle')
                 statsPlayer = `<@${user.id}> takes his **Knight Owl #${player.slot.owl4.hashtagNumber}**\n`
                 owlUser.push({hashtag: player.slot.owl4.hashtagNumber, attackHigh: player.slot.owl4.attackHigh, attackLow: player.slot.owl4.attackLow, defenseHigh: player.slot.owl4.defenseHigh, defenseLow: player.slot.owl4.defenseLow, health: player.slot.owl4.health, eva: player.slot.owl4.eva})
             };
-            if(randomOwlPlayer >= 4) {
+            if(owlListPlayer[randomOwlPlayer] == "5") {
                 owlStatus(player, player.slot.owl5, 'battle')
                 statsPlayer = `<@${user.id}> takes his **Knight Owl #${player.slot.owl5.hashtagNumber}**\n`
                 owlUser.push({hashtag: player.slot.owl5.hashtagNumber, attackHigh: player.slot.owl5.attackHigh, attackLow: player.slot.owl5.attackLow, defenseHigh: player.slot.owl5.defenseHigh, defenseLow: player.slot.owl5.defenseLow, health: player.slot.owl5.health, eva: player.slot.owl5.eva})
             };
         };
 
-
         // <=== Get Random Owl of Player Input ===>
         var owlAmoutPlayerInput = 0
         var statsPlayerInput = ``
+        var owlListPlayerInput = []
 
-        if(playerInput.slot.owl1.hashtagNumber != -1 && playerInput.slot.owl1.status == 1) owlAmoutPlayerInput += 1
-        if(playerInput.slot.owl2.hashtagNumber != -1 && playerInput.slot.owl2.status == 1) owlAmoutPlayerInput += 1
-        if(playerInput.slot.owl3.hashtagNumber != -1 && playerInput.slot.owl3.status == 1) owlAmoutPlayerInput += 1
-        if(playerInput.slot.owl4.hashtagNumber != -1 && playerInput.slot.owl4.status == 1) owlAmoutPlayerInput += 1
-        if(playerInput.slot.owl5.hashtagNumber != -1 && playerInput.slot.owl5.status == 1) owlAmoutPlayerInput += 1
+        if(playerInput.slot.owl1.hashtagNumber != -1 && playerInput.slot.owl1.status == 1) owlListPlayerInput.push("1")
+        if(playerInput.slot.owl2.hashtagNumber != -1 && playerInput.slot.owl2.status == 1) owlListPlayerInput.push("2")
+        if(playerInput.slot.owl3.hashtagNumber != -1 && playerInput.slot.owl3.status == 1) owlListPlayerInput.push("3")
+        if(playerInput.slot.owl4.hashtagNumber != -1 && playerInput.slot.owl4.status == 1) owlListPlayerInput.push("4")
+        if(playerInput.slot.owl5.hashtagNumber != -1 && playerInput.slot.owl5.status == 1) owlListPlayerInput.push("5")
 
-        var randomOwlPlayerInput = Math.floor(Math.random() * owlAmoutPlayerInput)
-        var owlUserInput = []
+        var randomOwlPlayerInput = Math.floor(Math.random() * owlListPlayerInput.length)
 
-        if(owlAmoutPlayerInput == 0) statsPlayerInput = `**No Knight Owl**`
-        if(owlAmoutPlayerInput >= 1){
+        if(owlAmoutPlayerInput.length == 0) statsPlayerInput = `**No Knight Owl**`
+        if(owlAmoutPlayerInput.length >= 1){
 
-            if(randomOwlPlayerInput == 0) {
+            if(owlListPlayerInput[randomOwlPlayerInput] == "1") {
                 owlStatus(playerInput, playerInput.slot.owl1, 'battle')
                 statsPlayerInput = `<@${userDuel.id}> takes his **Knight Owl #${playerInput.slot.owl1.hashtagNumber}**`
                 owlUserInput.push({hashtag: playerInput.slot.owl1.hashtagNumber, attackHigh: playerInput.slot.owl1.attackHigh, attackLow: playerInput.slot.owl1.attackLow, defenseHigh: playerInput.slot.owl1.defenseHigh, defenseLow: playerInput.slot.owl1.defenseLow, health: playerInput.slot.owl1.health, eva: playerInput.slot.owl1.eva})
             };
-            if(randomOwlPlayerInput == 1) {
+            if(owlListPlayerInput[randomOwlPlayerInput] == "2") {
                 owlStatus(playerInput, playerInput.slot.owl2, 'battle')
                 statsPlayerInput = `<@${userDuel.id}> takes his **Knight Owl #${playerInput.slot.owl2.hashtagNumber}**`
                 owlUserInput.push({hashtag: playerInput.slot.owl2.hashtagNumber, attackHigh: playerInput.slot.owl2.attackHigh, attackLow: playerInput.slot.owl2.attackLow, defenseHigh: playerInput.slot.owl2.defenseHigh, defenseLow: playerInput.slot.owl2.defenseLow, health: playerInput.slot.owl2.health, eva: playerInput.slot.owl2.eva})
             };
-            if(randomOwlPlayerInput == 2) {
+            if(owlListPlayerInput[randomOwlPlayerInput] == "3") {
                 owlStatus(playerInput, playerInput.slot.owl3, 'battle')
                 statsPlayerInput = `<@${userDuel.id}> takes his **Knight Owl #${playerInput.slot.owl3.hashtagNumber}**`
                 owlUserInput.push({hashtag: playerInput.slot.owl3.hashtagNumber, attackHigh: playerInput.slot.owl3.attackHigh, attackLow: playerInput.slot.owl3.attackLow, defenseHigh: playerInput.slot.owl3.defenseHigh, defenseLow: playerInput.slot.owl3.defenseLow, health: playerInput.slot.owl3.health, eva: playerInput.slot.owl3.eva})
             };
-            if(randomOwlPlayerInput == 3) {
+            if(owlListPlayerInput[randomOwlPlayerInput] == "4") {
                 owlStatus(playerInput, playerInput.slot.owl4, 'battle')
                 statsPlayerInput = `<@${userDuel.id}> takes his **Knight Owl #${playerInput.slot.owl4.hashtagNumber}**`
                 owlUserInput.push({hashtag: playerInput.slot.owl4.hashtagNumber, attackHigh: playerInput.slot.owl4.attackHigh, attackLow: playerInput.slot.owl4.attackLow, defenseHigh: playerInput.slot.owl4.defenseHigh, defenseLow: playerInput.slot.owl4.defenseLow, health: playerInput.slot.owl4.health, eva: playerInput.slot.owl4.eva})
             };
-            if(randomOwlPlayerInput >= 4) {
+            if(owlListPlayerInput[randomOwlPlayerInput] == "5") {
                 owlStatus(playerInput, playerInput.slot.owl5, 'battle')
                 statsPlayerInput = `<@${userDuel.id}> takes his **Knight Owl #${playerInput.slot.owl5.hashtagNumber}**`
                 owlUserInput.push({hashtag: playerInput.slot.owl5.hashtagNumber, attackHigh: playerInput.slot.owl5.attackHigh, attackLow: playerInput.slot.owl5.attackLow, defenseHigh: playerInput.slot.owl5.defenseHigh, defenseLow: playerInput.slot.owl5.defenseLow, health: playerInput.slot.owl5.health, eva: playerInput.slot.owl5.eva})
@@ -311,17 +310,17 @@ module.exports.run = async (client, message, args) => {
                 // === Check Winer ===
                 if(checkWinner(owlUser, owlUserInput) == 'userinput'){
 
-                    if(randomOwlPlayerInput == 0) owlStatus(playerInput, playerInput.slot.owl1, 'fight') 
-                    if(randomOwlPlayerInput == 1) owlStatus(playerInput, playerInput.slot.owl2, 'fight')
-                    if(randomOwlPlayerInput == 2) owlStatus(playerInput, playerInput.slot.owl3, 'fight')
-                    if(randomOwlPlayerInput == 3) owlStatus(playerInput, playerInput.slot.owl4, 'fight')
-                    if(randomOwlPlayerInput >= 4) owlStatus(playerInput, playerInput.slot.owl5, 'fight')
+                    if(randomOwlPlayerInput[randomOwlPlayerInput] == "1") owlStatus(playerInput, playerInput.slot.owl1, 'fight') 
+                    if(randomOwlPlayerInput[randomOwlPlayerInput] == "2") owlStatus(playerInput, playerInput.slot.owl2, 'fight')
+                    if(randomOwlPlayerInput[randomOwlPlayerInput] == "3") owlStatus(playerInput, playerInput.slot.owl3, 'fight')
+                    if(randomOwlPlayerInput[randomOwlPlayerInput] == "4") owlStatus(playerInput, playerInput.slot.owl4, 'fight')
+                    if(randomOwlPlayerInput[randomOwlPlayerInput] == "5") owlStatus(playerInput, playerInput.slot.owl5, 'fight')
 
-                    if(randomOwlPlayer == 0) owlStatus(player, player.slot.owl1, 'dead') 
-                    if(randomOwlPlayer == 1) owlStatus(player, player.slot.owl2, 'dead')
-                    if(randomOwlPlayer == 2) owlStatus(player, player.slot.owl3, 'dead')
-                    if(randomOwlPlayer == 3) owlStatus(player, player.slot.owl4, 'dead')
-                    if(randomOwlPlayer >= 4) owlStatus(player, player.slot.owl5, 'dead')
+                    if(randomOwlPlayer[randomOwlPlayer] == "1") owlStatus(player, player.slot.owl1, 'dead') 
+                    if(randomOwlPlayer[randomOwlPlayer] == "2") owlStatus(player, player.slot.owl2, 'dead')
+                    if(randomOwlPlayer[randomOwlPlayer] == "3") owlStatus(player, player.slot.owl3, 'dead')
+                    if(randomOwlPlayer[randomOwlPlayer] == "4") owlStatus(player, player.slot.owl4, 'dead')
+                    if(randomOwlPlayer[randomOwlPlayer] == "5") owlStatus(player, player.slot.owl5, 'dead')
 
                     var userInputWin = new MessageEmbed()
                         .setColor('#e60d0d')
@@ -332,17 +331,17 @@ module.exports.run = async (client, message, args) => {
                 };
 
                 if(checkWinner(owlUser, owlUserInput) == 'user'){
-                    if(randomOwlPlayer == 0) owlStatus(player, player.slot.owl1, 'figth') 
-                    if(randomOwlPlayer == 1) owlStatus(player, player.slot.owl2, 'figth')
-                    if(randomOwlPlayer == 2) owlStatus(player, player.slot.owl3, 'figth')
-                    if(randomOwlPlayer == 3) owlStatus(player, player.slot.owl4, 'figth')
-                    if(randomOwlPlayer >= 4) owlStatus(player, player.slot.owl5, 'figth')
+                    if(randomOwlPlayer[randomOwlPlayer] == "1") owlStatus(player, player.slot.owl1, 'figth') 
+                    if(randomOwlPlayer[randomOwlPlayer] == "2") owlStatus(player, player.slot.owl2, 'figth')
+                    if(randomOwlPlayer[randomOwlPlayer] == "3") owlStatus(player, player.slot.owl3, 'figth')
+                    if(randomOwlPlayer[randomOwlPlayer] == "4") owlStatus(player, player.slot.owl4, 'figth')
+                    if(randomOwlPlayer[randomOwlPlayer] == "5") owlStatus(player, player.slot.owl5, 'figth')
 
-                    if(randomOwlPlayerInput == 0) owlStatus(playerInput, playerInput.slot.owl1, 'dead') 
-                    if(randomOwlPlayerInput == 1) owlStatus(playerInput, playerInput.slot.owl2, 'dead')
-                    if(randomOwlPlayerInput == 2) owlStatus(playerInput, playerInput.slot.owl3, 'dead')
-                    if(randomOwlPlayerInput == 3) owlStatus(playerInput, playerInput.slot.owl4, 'dead')
-                    if(randomOwlPlayerInput >= 4) owlStatus(playerInput, playerInput.slot.owl5, 'dead')
+                    if(randomOwlPlayerInput[randomOwlPlayerInput] == "1") owlStatus(playerInput, playerInput.slot.owl1, 'dead') 
+                    if(randomOwlPlayerInput[randomOwlPlayerInput] == "2") owlStatus(playerInput, playerInput.slot.owl2, 'dead')
+                    if(randomOwlPlayerInput[randomOwlPlayerInput] == "3") owlStatus(playerInput, playerInput.slot.owl3, 'dead')
+                    if(randomOwlPlayerInput[randomOwlPlayerInput] == "4") owlStatus(playerInput, playerInput.slot.owl4, 'dead')
+                    if(randomOwlPlayerInput[randomOwlPlayerInput] == "5") owlStatus(playerInput, playerInput.slot.owl5, 'dead')
 
                     var userWin = new MessageEmbed()
                         .setColor('#0de61b')
