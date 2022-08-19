@@ -9,6 +9,9 @@ module.exports.run = async (client, message, args) => {
   var userInput = message.mentions.users.first();
   var hashtag = args[1]
 
+  let player = await PLAYER.findOne({userId: userInput.id})
+  if(!player) return message.reply(`${inlineCode("🪧")} The mentioned user has not started Knigth Owl : ${inlineCode("!start")}`)
+
   function hastagAlreadyTaken(player, hashtag){
     for(const allPlayer of player){
       if(allPlayer.slot.owl1.hashtagNumber == parseInt(hashtag)) return true
@@ -64,9 +67,9 @@ module.exports.run = async (client, message, args) => {
         }
         if(player.slot.owl5.hashtagNumber == -1){
           return addOwl(player, player.slot.owl5, hashtag) 
-        } else return message.reply(`${inlineCode("🪧")} You already have 5 owls registered...`)
-      }
-    } else return message.reply(`${inlineCode("🪧")} This owl is already in use...`)
+        } else return message.reply(`${inlineCode("🪧")} You already have 5 owls registered...`);
+      };
+    } else return message.reply(`${inlineCode("🪧")} This owl is already in use...`);
   }
 };
 
