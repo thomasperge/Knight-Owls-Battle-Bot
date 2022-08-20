@@ -27,6 +27,7 @@ module.exports.run = async (client, message, args) => {
                             defense: 0,
                             eva: 0,
                             attack: 0,
+                            cooldown: 0,
                         }, 
                         owl2: {
                             hashtagNumber: -1,
@@ -35,6 +36,7 @@ module.exports.run = async (client, message, args) => {
                             defense: 0,
                             eva: 0,
                             attack: 0,
+                            cooldown: 0,
                         },
                         owl3: {
                             hashtagNumber: -1,
@@ -43,6 +45,7 @@ module.exports.run = async (client, message, args) => {
                             defense: 0,
                             eva: 0,
                             attack: 0,
+                            cooldown: 0,
                         }, 
                         owl4: {
                             hashtagNumber: -1,
@@ -51,6 +54,7 @@ module.exports.run = async (client, message, args) => {
                             defense: 0,
                             eva: 0,
                             attack: 0,
+                            cooldown: 0,
                         }, 
                         owl5: {
                             hashtagNumber: -1,
@@ -59,12 +63,13 @@ module.exports.run = async (client, message, args) => {
                             defense: 0,
                             eva: 0,
                             attack: 0,
+                            cooldown: 0,
                         }, 
                     },
                     loot:{
                         eagleHead: 0,
                         eagleWing: 0,
-                        eaglealon: 0
+                        eagleTalon: 0
                     }
                 })
                 playerSchema.save()

@@ -1,5 +1,6 @@
 const Discord = require('discord.js');
 const BATTLE = require('../modules/battle.js');
+const CONFIGEAGLE = require('../config/configEagle.json')
 const { bold, inlineCode, codeBlock, ButtonBuilder } = require('@discordjs/builders');
 const { MessageActionRow, MessageButton, MessageEmbed } = require('discord.js');
 
@@ -34,26 +35,26 @@ module.exports.run = async (client, message, args) => {
         if(ennemiReturn(ennemie, 'eagle')[0]){
             var numberEagle = ennemiReturn(ennemie, 'eagle')[2]
 
-            ennemiDisplay += `${numberEagle}x Eagle, `
-            ennemiStats += `**Eagle** - ${inlineCode("🔥")} 3.4 - 5.5, ${inlineCode("🛡️")} 1.5 - 4.8, ${inlineCode("❤️")} 9.6\n`
+            ennemiDisplay += `[${numberEagle}] Eagle(s), `
+            ennemiStats += `**Eagle** - ${inlineCode("ATK: ")} ${CONFIGEAGLE.eagle.attackMin + ' - ' + CONFIGEAGLE.eagle.attackMax}, ${inlineCode("DEF: ")} ${CONFIGEAGLE.eagle.defenseMin + ' - ' + CONFIGEAGLE.eagle.defenseMax}, ${inlineCode("HP: ")} ${CONFIGEAGLE.eagle.healthMin + ' - ' + CONFIGEAGLE.eagle.healthMax}\n`
         }
         if(ennemiReturn(ennemie, 'eagle_captain')[0]){
             var numberEagleC = ennemiReturn(ennemie, 'eagle_captain')[2]
 
-            ennemiDisplay += `${numberEagleC}x Captain Eagle, `
-            ennemiStats += `**Eagle Captain** - ${inlineCode("🔥")} 3.4 - 5.5, ${inlineCode("🛡️")} 1.5 - 4.8, ${inlineCode("❤️")} 9.6\n`
+            ennemiDisplay += `[${numberEagleC}] Captain Eagle(s), `
+            ennemiStats += `**Eagle Captain** - ${inlineCode("ATK: ")} ${CONFIGEAGLE.captainEagle.attackMin + ' - ' + CONFIGEAGLE.captainEagle.attackMax}, ${inlineCode("DEF: ")} ${CONFIGEAGLE.captainEagle.defenseMin + ' - ' + CONFIGEAGLE.captainEagle.defenseMax}, ${inlineCode("HP: ")} ${CONFIGEAGLE.captainEagle.healthMin + ' - ' + CONFIGEAGLE.captainEagle.healthMax}\n`
         }
         if(ennemiReturn(ennemie, 'eagle_king')[0]){
             var numberEagleK = ennemiReturn(ennemie, 'eagle_king')[2]
 
-            ennemiDisplay += `${numberEagleK}x King Eagle, `
-            ennemiStats += `**Eagle King** - ${inlineCode("🔥")} 3.4 - 5.5, ${inlineCode("🛡️")} 1.5 - 4.8, ${inlineCode("❤️")} 9.6\n`
+            ennemiDisplay += `[${numberEagleK}] King Eagle(s), `
+            ennemiStats += `**Eagle King** - ${inlineCode("ATK: ")} ${CONFIGEAGLE.kingEagle.attackMin + ' - ' + CONFIGEAGLE.kingEagle.attackMax}, ${inlineCode("DEF: ")} ${CONFIGEAGLE.kingEagle.defenseMin + ' - ' + CONFIGEAGLE.kingEagle.defenseMax}, ${inlineCode("HP: ")} ${CONFIGEAGLE.kingEagle.healthMin + ' - ' + CONFIGEAGLE.kingEagle.healthMax}\n`
         }
         if(ennemiReturn(ennemie, 'eagle_god')[0]){
             var numberEagleG = ennemiReturn(ennemie, 'eagle_god')[2]
 
-            ennemiDisplay += `${numberEagleG}x God Eagle, `
-            ennemiStats += `**Eagle God** - ${inlineCode("🔥")} 3.4 - 5.5, ${inlineCode("🛡️")} 1.5 - 4.8, ${inlineCode("❤️")} 9.6\n`
+            ennemiDisplay += `[${numberEagleG}] God Eagle(s), `
+            ennemiStats += `**Eagle God** - ${inlineCode("ATK: ")} ${CONFIGEAGLE.godEagle.attackMin + ' - ' + CONFIGEAGLE.godEagle.attackMax}, ${inlineCode("DEF: ")} ${CONFIGEAGLE.godEagle.defenseMin + ' - ' + CONFIGEAGLE.godEagle.defenseMax}, ${inlineCode("HP: ")} ${CONFIGEAGLE.godEagle.healthMin + ' - ' + CONFIGEAGLE.godEagle.healthMax}\n`
         }
 
         var eagleAmout = ennemiReturn(ennemie, 'eagle')[2]
@@ -75,7 +76,7 @@ module.exports.run = async (client, message, args) => {
         var statusEmbed = new MessageEmbed()
             .setColor('#9f5fff')
             .setTitle(`⌛ Waiting for players...`)
-            .setDescription(`Calling all owls ! ${inlineCode(ennemiDisplay.substr(0, ennemiDisplay.length - 2))} are approching and we need ${inlineCode(`${userneeded} owls`)} to defend.\nReact with ${inlineCode("⚔️")} to endlist your owl!\n\n${ennemiStats}`)
+            .setDescription(`Calling all owls ! ${inlineCode(ennemiDisplay.substr(0, ennemiDisplay.length - 2))} are approching and we need ${inlineCode(`[${userneeded}] owls`)} to defend.\nReact with ${inlineCode("⚔️")} to endlist your owl!\n\n${ennemiStats}`)
             .setTimestamp();
         message.reply({ embeds: [statusEmbed] }).then(msg=>{
             msg.react("⚔️")

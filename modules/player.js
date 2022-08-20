@@ -13,6 +13,7 @@ const playerSchema = mongoose.Schema({
         attackLow: Number,
         attackHigh: Number,
         eva: Number,
+        cooldown: Number,
       }, 
       owl2: {
         hashtagNumber: Number,
@@ -23,6 +24,7 @@ const playerSchema = mongoose.Schema({
         attackLow: Number,
         attackHigh: Number,
         eva: Number,
+        cooldown: Number,
       },
       owl3: {
         hashtagNumber: Number,
@@ -33,6 +35,7 @@ const playerSchema = mongoose.Schema({
         attackLow: Number,
         attackHigh: Number,
         eva: Number,
+        cooldown: Number,
       }, 
       owl4: {
         hashtagNumber: Number,
@@ -43,6 +46,7 @@ const playerSchema = mongoose.Schema({
         attackLow: Number,
         attackHigh: Number,
         eva: Number,
+        cooldown: Number,
       }, 
       owl5: {
         hashtagNumber: Number,
@@ -53,12 +57,13 @@ const playerSchema = mongoose.Schema({
         attackLow: Number,
         attackHigh: Number,
         eva: Number,
+        cooldown: Number,
       }, 
     },
     loot:{
       eagleHead: Number,
       eagleWing: Number,
-      eaglealon: Number
+      eagleTalon: Number
     }
 })
 
