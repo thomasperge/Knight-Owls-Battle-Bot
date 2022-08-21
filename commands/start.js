@@ -84,7 +84,6 @@ module.exports.run = async (client, message, args) => {
     );
 
     if(user.id == "564050802566627358" || user.id == "369531783471038474" || user.id == "792916125784342578" || user.id == "162596374163095552" || user.id == "162595815670546433"){
-        console.log(user.id)
         BATTLE.findOne({ battleCreatorID: user.id },
             (err, battle) => {
                 if (err) console.log(err)

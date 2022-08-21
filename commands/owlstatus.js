@@ -18,10 +18,6 @@ module.exports.run = async (client, message, args) => {
     if(!player) return message.reply(`${inlineCode("🪧")} you are not a player...`)
     else {
 
-        function cooldownStatusOwl(owlStatus, owlCooldown, cooldown){
-            
-        }
-
         function statusMessage(){
             var owlStatus = ``
 
@@ -36,7 +32,7 @@ module.exports.run = async (client, message, args) => {
 
                     if(player.slot.owl1.cooldown == 2){
                         if (cooldownOwl1.get(message.author.id) && new Date().getTime() - cooldownOwl1.get(message.author.id) < shuffleTime) {
-                            owlStatus += `**Owl #${player.slot.owl1.hashtagNumber}** - Healing... (${inlineCode(Math.ceil((shuffleTime - (new Date().getTime() - cooldownOwl1.get(message.author.id))) / 1000))})\n`
+                            owlStatus += `**Owl #${player.slot.owl1.hashtagNumber}** - Healing... (${inlineCode(Math.ceil((shuffleTime - (new Date().getTime() - cooldownOwl1.get(message.author.id))) / 1000) + 's')})\n`
                         } else {
                             player.slot.owl1.cooldown = 3
                         };
@@ -61,7 +57,7 @@ module.exports.run = async (client, message, args) => {
 
                     if(player.slot.owl2.cooldown == 2){
                         if (cooldownOwl2.get(message.author.id) && new Date().getTime() - cooldownOwl2.get(message.author.id) < shuffleTime) {
-                            owlStatus += `**Owl #${player.slot.owl2.hashtagNumber}** - Healing... (${inlineCode(Math.ceil((shuffleTime - (new Date().getTime() - cooldownOwl2.get(message.author.id))) / 1000))})\n`
+                            owlStatus += `**Owl #${player.slot.owl2.hashtagNumber}** - Healing... (${inlineCode(Math.ceil((shuffleTime - (new Date().getTime() - cooldownOwl2.get(message.author.id))) / 1000) + 's')})\n`
                         } else {
                             player.slot.owl2.cooldown = 3
                         };
@@ -86,7 +82,7 @@ module.exports.run = async (client, message, args) => {
 
                     if(player.slot.owl3.cooldown == 2){
                         if (cooldownOwl3.get(message.author.id) && new Date().getTime() - cooldownOwl3.get(message.author.id) < shuffleTime) {
-                            owlStatus += `**Owl #${player.slot.owl3.hashtagNumber}** - Healing... (${inlineCode(Math.ceil((shuffleTime - (new Date().getTime() - cooldownOwl3.get(message.author.id))) / 1000))})\n`
+                            owlStatus += `**Owl #${player.slot.owl3.hashtagNumber}** - Healing... (${inlineCode(Math.ceil((shuffleTime - (new Date().getTime() - cooldownOwl3.get(message.author.id))) / 1000) + 's')})\n`
                         } else {
                             player.slot.owl3.cooldown = 3
                         };
@@ -111,7 +107,7 @@ module.exports.run = async (client, message, args) => {
 
                     if(player.slot.owl4.cooldown == 2){
                         if (cooldownOwl4.get(message.author.id) && new Date().getTime() - cooldownOwl4.get(message.author.id) < shuffleTime) {
-                            owlStatus += `**Owl #${player.slot.owl4.hashtagNumber}** - Healing... (${inlineCode(Math.ceil((shuffleTime - (new Date().getTime() - cooldownOwl4.get(message.author.id))) / 1000))})\n`
+                            owlStatus += `**Owl #${player.slot.owl4.hashtagNumber}** - Healing... (${inlineCode(Math.ceil((shuffleTime - (new Date().getTime() - cooldownOwl4.get(message.author.id))) / 1000) + 's')})\n`
                         } else {
                             player.slot.owl4.cooldown = 3
                         };
@@ -136,7 +132,7 @@ module.exports.run = async (client, message, args) => {
 
                     if(player.slot.owl5.cooldown == 2){
                         if (cooldownOwl5.get(message.author.id) && new Date().getTime() - cooldownOwl5.get(message.author.id) < shuffleTime) {
-                            owlStatus += `**Owl #${player.slot.owl5.hashtagNumber}** - Healing... (${inlineCode(Math.ceil((shuffleTime - (new Date().getTime() - cooldownOwl5.get(message.author.id))) / 1000))})\n`
+                            owlStatus += `**Owl #${player.slot.owl5.hashtagNumber}** - Healing... (${inlineCode(Math.ceil((shuffleTime - (new Date().getTime() - cooldownOwl5.get(message.author.id))) / 1000) + 's')})\n`
                         } else {
                             player.slot.owl5.cooldown = 3
                         };
@@ -162,32 +158,7 @@ module.exports.run = async (client, message, args) => {
             .setTitle(`Your owl stats 📊`)
             .setDescription(`${inlineCode("🪧")} Here are the statuses of your registered owls :\n\n${statusMessage()}`)
             .setTimestamp();
-
-        //  === CoolDowns: 3s ===
-        // if (cooldownPlayers.get(message.author.id) && new Date().getTime() - cooldownPlayers.get(message.author.id) < shuffleTime) {
-        //     message.reply({ embeds: [statusEmbed] })
-        //     return;
-        // }
-        // cooldownPlayers.set(message.author.id, new Date().getTime());
-
-        // if(player.slot.owl1.status != 3){
-        //     player.slot.owl1.status = 1
-        // };
-        // if(player.slot.owl2.status != 3){
-        //     player.slot.owl2.status = 1
-        // };
-        // if(player.slot.owl3.status != 3){
-        //     player.slot.owl3.status = 1
-        // };
-        // if(player.slot.owl4.status != 3){
-        //     player.slot.owl4.status = 1
-        // };
-        // if(player.slot.owl5.status != 3){
-        //     player.slot.owl5.status = 1
-        // };
-        // // player.save()
         message.reply({ embeds: [statusEmbed] })
-
     };
 };
 

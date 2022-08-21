@@ -449,7 +449,7 @@ module.exports.run = async (client, message, args) => {
                 messageBossStatus += bossDead
 
                 var eagleWinnerEmbed = new MessageEmbed()
-                    .setColor('#e60d0d')
+                    .setColor('#ff0000')
                     .setTitle(`DEFEAT 🏹`)
                     .setDescription(`The owls succumbed to the ennemy but were flown back to safety by the medics\nThe ennemy returns to their land victorious\n\n${messageBossStatus}`)
                     .setTimestamp();
@@ -514,7 +514,7 @@ module.exports.run = async (client, message, args) => {
                 messageUserStatus += owlDead
 
                 var playerWinnerEmbed = new MessageEmbed()
-                    .setColor('#0de61b')
+                    .setColor('#00ff00')
                     .setTitle(`VICTORY 🏹`)
                     .setDescription(`The owls successfully vanquished the ennemy\n\n${messageUserStatus}`)
                     .setTimestamp();

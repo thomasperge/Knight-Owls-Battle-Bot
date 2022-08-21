@@ -1,6 +1,6 @@
 {   
     "allOwl" : [
-        {"count":1,"health":"14.5","attack_low":"2.2","attack_high":"4","defense_low":"2.5","defense_high":"5.5","evasion":"97"},
+        {"count":1,"health":"14.5","attack_low":"2.2","attack_high":"4","defense_low":"2.5","defense_high":"5.5","evasion":"17.2"},
         {"count":2,"health":"22","attack_low":"4","attack_high":"9","defense_low":"3","defense_high":"5.5","evasion":"19.5"},
         {"count":3,"health":"13","attack_low":"2.25","attack_high":"7","defense_low":"4","defense_high":"8","evasion":"7.88"},
         {"count":4,"health":"12","attack_low":"1.25","attack_high":"6.5","defense_low":"2.5","defense_high":"5","evasion":"10.5"},

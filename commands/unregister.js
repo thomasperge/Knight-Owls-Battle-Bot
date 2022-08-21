@@ -18,8 +18,6 @@ module.exports.run = async (client, message, args) => {
 
             function deleteHashtag(player, owl, id){
 
-                console.log(owl)
-
                 owl.hashtagNumber = -1
                 owl.status = 1
                 owl.health = 0

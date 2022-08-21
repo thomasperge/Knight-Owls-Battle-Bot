@@ -38,28 +38,28 @@ module.exports.run = async (client, message, args) => {
             allIsOk = true
 
             ennemiDisplay += `[${numberEagle}] Eagle(s), `
-            ennemiStats += `**Eagle** - ${inlineCode("ATK: ")} ${CONFIGEAGLE.eagle.attackMin + ' - ' + CONFIGEAGLE.eagle.attackMax}, ${inlineCode("DEF: ")} ${CONFIGEAGLE.eagle.defenseMin + ' - ' + CONFIGEAGLE.eagle.defenseMax}, ${inlineCode("HP: ")} ${CONFIGEAGLE.eagle.healthMin + ' - ' + CONFIGEAGLE.eagle.healthMax}\n`
+            ennemiStats += `**Eagle** - **ATK:** ${CONFIGEAGLE.eagle.attackMin + ' - ' + CONFIGEAGLE.eagle.attackMax}, **DEF:** ${CONFIGEAGLE.eagle.defenseMin + ' - ' + CONFIGEAGLE.eagle.defenseMax}, **HP:** ${CONFIGEAGLE.eagle.healthMin + ' - ' + CONFIGEAGLE.eagle.healthMax}\n`
         }
         if(ennemiReturn(ennemie, 'eagle_captain')[0]){
             var numberEagleC = ennemiReturn(ennemie, 'eagle_captain')[2]
             allIsOk = true
 
             ennemiDisplay += `[${numberEagleC}] Captain Eagle(s), `
-            ennemiStats += `**Eagle Captain** - ${inlineCode("ATK: ")} ${CONFIGEAGLE.captainEagle.attackMin + ' - ' + CONFIGEAGLE.captainEagle.attackMax}, ${inlineCode("DEF: ")} ${CONFIGEAGLE.captainEagle.defenseMin + ' - ' + CONFIGEAGLE.captainEagle.defenseMax}, ${inlineCode("HP: ")} ${CONFIGEAGLE.captainEagle.healthMin + ' - ' + CONFIGEAGLE.captainEagle.healthMax}\n`
+            ennemiStats += `**Eagle Captain** - **ATK:** ${CONFIGEAGLE.captainEagle.attackMin + ' - ' + CONFIGEAGLE.captainEagle.attackMax}, **DEF:** ${CONFIGEAGLE.captainEagle.defenseMin + ' - ' + CONFIGEAGLE.captainEagle.defenseMax}, **HP:** ${CONFIGEAGLE.captainEagle.healthMin + ' - ' + CONFIGEAGLE.captainEagle.healthMax}\n`
         }
         if(ennemiReturn(ennemie, 'eagle_king')[0]){
             var numberEagleK = ennemiReturn(ennemie, 'eagle_king')[2]
             allIsOk = true
 
             ennemiDisplay += `[${numberEagleK}] King Eagle(s), `
-            ennemiStats += `**Eagle King** - ${inlineCode("ATK: ")} ${CONFIGEAGLE.kingEagle.attackMin + ' - ' + CONFIGEAGLE.kingEagle.attackMax}, ${inlineCode("DEF: ")} ${CONFIGEAGLE.kingEagle.defenseMin + ' - ' + CONFIGEAGLE.kingEagle.defenseMax}, ${inlineCode("HP: ")} ${CONFIGEAGLE.kingEagle.healthMin + ' - ' + CONFIGEAGLE.kingEagle.healthMax}\n`
+            ennemiStats += `**Eagle King** - **ATK:** ${CONFIGEAGLE.kingEagle.attackMin + ' - ' + CONFIGEAGLE.kingEagle.attackMax}, **DEF:** ${CONFIGEAGLE.kingEagle.defenseMin + ' - ' + CONFIGEAGLE.kingEagle.defenseMax}, **HP:** ${CONFIGEAGLE.kingEagle.healthMin + ' - ' + CONFIGEAGLE.kingEagle.healthMax}\n`
         }
         if(ennemiReturn(ennemie, 'eagle_god')[0]){
             var numberEagleG = ennemiReturn(ennemie, 'eagle_god')[2]
             allIsOk = true
 
             ennemiDisplay += `[${numberEagleG}] God Eagle(s), `
-            ennemiStats += `**Eagle God** - ${inlineCode("ATK: ")} ${CONFIGEAGLE.godEagle.attackMin + ' - ' + CONFIGEAGLE.godEagle.attackMax}, ${inlineCode("DEF: ")} ${CONFIGEAGLE.godEagle.defenseMin + ' - ' + CONFIGEAGLE.godEagle.defenseMax}, ${inlineCode("HP: ")} ${CONFIGEAGLE.godEagle.healthMin + ' - ' + CONFIGEAGLE.godEagle.healthMax}\n`
+            ennemiStats += `**Eagle God** - **ATK:** ${CONFIGEAGLE.godEagle.attackMin + ' - ' + CONFIGEAGLE.godEagle.attackMax}, **DEF:** ${CONFIGEAGLE.godEagle.defenseMin + ' - ' + CONFIGEAGLE.godEagle.defenseMax}, **HP:** ${CONFIGEAGLE.godEagle.healthMin + ' - ' + CONFIGEAGLE.godEagle.healthMax}\n`
         }
 
         if(allIsOk == false) return message.reply(`${inlineCode("🪧")} Please type a correct eagle: ${inlineCode("eagle")} / ${inlineCode("eagle_captain")} / ${inlineCode("eagle_king")} / ${inlineCode("eagle_god")}`)
@@ -84,10 +84,8 @@ module.exports.run = async (client, message, args) => {
         })
 
         client.on('messageReactionAdd', async (reaction, userReact) => {
-            console.log('1 =====', battle, 'by : ', userReact)
             if(!userReact.bot){
                 battle.battleMember.push(userReact.id)
-                console.log('2 =====', battle, 'by : ', userReact)
                 battle.save()
             };
         });
