@@ -356,7 +356,8 @@ module.exports.run = async (client, message, args) => {
 
                 if(allBossStats.length == 0 || allBossStats == undefined){
                     messageBossStatus = `All the bosses have been killed\n`
-                }
+                    bossDead = ``
+                };
                 
                 messageBossStatus += bossDead
                 messageUserStatus += owlDead
@@ -437,6 +438,14 @@ module.exports.run = async (client, message, args) => {
                     } else messageBossStatus += `**${bossStatus.name}** (**HP: **${inlineCode(numStr(bossStatus.health))})\n`
                 };
 
+                battle.battleMember = []
+                battle.maxUser = 0
+                battle.ennemi.eagle = 0
+                battle.ennemi.eagleCaptain = 0
+                battle.ennemi.eagleKing = 0
+                battle.ennemi.eagleGod = 0
+                battle.save()
+
                 messageBossStatus += bossDead
 
                 var eagleWinnerEmbed = new MessageEmbed()
@@ -494,6 +503,14 @@ module.exports.run = async (client, message, args) => {
                     } else messageUserStatus += `<@${owl.idOwner}> - **Knigth Owl #${owl.hashtag}** (HP: ${inlineCode(numStr(owl.health))})\n`
                 };
 
+                battle.battleMember = []
+                battle.maxUser = 0
+                battle.ennemi.eagle = 0
+                battle.ennemi.eagleCaptain = 0
+                battle.ennemi.eagleKing = 0
+                battle.ennemi.eagleGod = 0
+                battle.save()
+
                 messageUserStatus += owlDead
 
                 var playerWinnerEmbed = new MessageEmbed()
@@ -502,7 +519,7 @@ module.exports.run = async (client, message, args) => {
                     .setDescription(`The owls successfully vanquished the ennemy\n\n${messageUserStatus}`)
                     .setTimestamp();
                 // messageHandle.edit({embeds:[playerWinnerEmbed]});
-                message.channel.send({embeds:[playerWinnerEmbed]});
+                return message.channel.send({embeds:[playerWinnerEmbed]});
             };
         })();
     } else return message.reply(`${inlineCode("🪧")} You don't have the permission to start a battle`);
