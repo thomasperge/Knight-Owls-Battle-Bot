@@ -25,9 +25,9 @@ module.exports.run = async (client, message, args) => {
     if(checkAdmin(user.id)) admin = `(admin)`
 
     // == Item(s) ==
-    if(player.loot.eagleHead > 0) allItem += `💀 **Eagle Head : ** ${player.loot.eagleHead}\n`
-    if(player.loot.eagleWing > 0) allItem += `🪶 **Eagle Wing : ** ${player.loot.eagleWing}\n`
-    if(player.loot.eagleTalon > 0) allItem += `🦷 **Eagle Talon : ** ${player.loot.eagleTalon}\n`
+    if(player.loot.eagleHead > 0) allItem += `**Eagle Head : ** ${player.loot.eagleHead}\n`
+    if(player.loot.eagleWing > 0) allItem += `**Eagle Wing : ** ${player.loot.eagleWing}\n`
+    if(player.loot.eagleTalon > 0) allItem += `**Eagle Talon : ** ${player.loot.eagleTalon}\n`
 
     if(allItem.length == 0 || allItem == '' || allItem == ' ' || allItem == undefined) allItem = "You don't have any items"
 
@@ -43,7 +43,7 @@ module.exports.run = async (client, message, args) => {
     var messageEmbed = new MessageEmbed()
         .setColor('#ed00ff')
         .setTitle(`${user.username} profile 👥`)
-        .setDescription(`**Pseudo :** ${user.username} ${admin}\n\n⚔️ **Owl(s)** :\n${allOwl}\n\n📦 **Your item(s) :**\n${allItem}`)
+        .setDescription(`**Pseudo :** ${user.username} ${admin}\n\n⚔️ **Knight Owls** :\n${allOwl}\n📦 **Your item(s) :**\n${allItem}`)
         .setTimestamp();
     return message.reply({embeds: [messageEmbed]})
 };

@@ -42,6 +42,7 @@ module.exports.run = async (client, message, args) => {
         owlSlot.attackLow = OWLCONFIG.allOwl[parseInt(hashtag) - 1].attack_low
         owlSlot.attackHigh = OWLCONFIG.allOwl[parseInt(hashtag) - 1].attack_high
         owlSlot.eva = OWLCONFIG.allOwl[parseInt(hashtag) - 1].evasion
+        owlSlot.maxHp = OWLCONFIG.allOwl[parseInt(hashtag) - 1].health
         
         player.save()
         

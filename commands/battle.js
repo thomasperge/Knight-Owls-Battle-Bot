@@ -77,7 +77,7 @@ module.exports.run = async (client, message, args) => {
         var statusEmbed = new MessageEmbed()
             .setColor('#9f5fff')
             .setTitle(`⌛ Waiting for players...`)
-            .setDescription(`Calling all owls ! ${inlineCode(ennemiDisplay.substr(0, ennemiDisplay.length - 2))} are approching and we need ${inlineCode(`[${userneeded}] owls`)} to defend.\nReact with ${inlineCode("⚔️")} to endlist your owl!\n\n${ennemiStats}`)
+            .setDescription(`Calling all owls ! ${inlineCode(ennemiDisplay.substr(0, ennemiDisplay.length - 2))} are approching and we need ${inlineCode(`[${userneeded}] owls`)} to defend.\nReact with ${inlineCode("⚔️")} to enlist your owl!\n\n${ennemiStats}`)
             .setTimestamp();
         message.reply({ embeds: [statusEmbed] }).then(msg=>{
             msg.react("⚔️")

@@ -28,6 +28,7 @@ module.exports.run = async (client, message, args) => {
                             eva: 0,
                             attack: 0,
                             cooldown: 0,
+                            maxHp: 0
                         }, 
                         owl2: {
                             hashtagNumber: -1,
@@ -37,6 +38,7 @@ module.exports.run = async (client, message, args) => {
                             eva: 0,
                             attack: 0,
                             cooldown: 0,
+                            maxHp: 0
                         },
                         owl3: {
                             hashtagNumber: -1,
@@ -46,6 +48,7 @@ module.exports.run = async (client, message, args) => {
                             eva: 0,
                             attack: 0,
                             cooldown: 0,
+                            maxHp: 0
                         }, 
                         owl4: {
                             hashtagNumber: -1,
@@ -55,6 +58,7 @@ module.exports.run = async (client, message, args) => {
                             eva: 0,
                             attack: 0,
                             cooldown: 0,
+                            maxHp: 0
                         }, 
                         owl5: {
                             hashtagNumber: -1,
@@ -64,6 +68,7 @@ module.exports.run = async (client, message, args) => {
                             eva: 0,
                             attack: 0,
                             cooldown: 0,
+                            maxHp: 0
                         }, 
                     },
                     loot:{
@@ -74,7 +79,7 @@ module.exports.run = async (client, message, args) => {
                 })
                 playerSchema.save()
 
-                playerCreateEmbed.addField(`${inlineCode("✅")} New player !`,`📜 Have you become the greatest master of owls!\n`);
+                playerCreateEmbed.addField(`${inlineCode("✅")} New player !`,`📜 You have what it takes to become a master of owls?\n`);
                 message.reply({ embeds: [playerCreateEmbed] })
 
             } else {

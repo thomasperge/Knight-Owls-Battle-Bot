@@ -170,13 +170,14 @@ module.exports.run = async (client, message, args) => {
 
         // === Battle Player vs Boss === 
         // === Variable Declaration ===
-        var allBossDisplay = ``
         var allBoss = battle.ennemi
 
 
         // === Function Stats Boss ===
         function bossStats(allBoss){
             var stats = []
+            var allBossDisplay = ``
+
 
             var eagleAttack = 0
             var eagleDefense = 0
@@ -193,10 +194,11 @@ module.exports.run = async (client, message, args) => {
 
             for (let pas = 1; pas < allBoss.eagle + 1; pas++) {
                 if(allBoss.eagle > 0){
-                    eagleAttack = Math.floor(Math.random() * CONFIGEAGLE.eagle.attackMax) + CONFIGEAGLE.eagle.attackMin
-                    eagleDefense = Math.floor(Math.random() * CONFIGEAGLE.eagle.defenseMax) + CONFIGEAGLE.eagle.defenseMin
-                    eagleHealth = Math.floor(Math.random() * CONFIGEAGLE.eagle.healthMax) + CONFIGEAGLE.eagle.healthMin
+                    eagleAttack = Math.floor(Math.random() * (CONFIGEAGLE.eagle.attackMax - CONFIGEAGLE.eagle.attackMin + 1)) + CONFIGEAGLE.eagle.attackMin
+                    eagleDefense = Math.floor(Math.random() * (CONFIGEAGLE.eagle.defenseMax - CONFIGEAGLE.eagle.defenseMin + 1)) + CONFIGEAGLE.eagle.defenseMin
+                    eagleHealth = Math.floor(Math.random() * (CONFIGEAGLE.eagle.healthMax - CONFIGEAGLE.eagle.healthMin + 1)) + CONFIGEAGLE.eagle.healthMin
                     stats.push({name: `Eagle ${pas}`, eagleNumber: pas, attack: eagleAttack, defense: eagleDefense, health: eagleHealth})
+                    allBossDisplay += `**x${pas} Eagle** - ${'**ATK: **' + CONFIGEAGLE.eagle.attackMin + " - " + CONFIGEAGLE.eagle.attackMax}, ${'**DEF: **' + CONFIGEAGLE.eagle.defenseMin + " - " + CONFIGEAGLE.eagle.defenseMax}, ${'**HP: **' + eagleHealth}\n`
                 };
             }
             
@@ -206,6 +208,7 @@ module.exports.run = async (client, message, args) => {
                     eagleCDefense = Math.floor(Math.random() * CONFIGEAGLE.captainEagle.defenseMax) + CONFIGEAGLE.captainEagle.defenseMin
                     eagleCHealth = Math.floor(Math.random() * CONFIGEAGLE.captainEagle.healthMax) + CONFIGEAGLE.captainEagle.healthMin
                     stats.push({name: `Eagle Captain ${pas}`, eagleCaptainNumber: pas, attack: eagleCAttack, defense: eagleCDefense, health: eagleCHealth})
+                    allBossDisplay += `**x${pas} Eagle Captain** - ${'**ATK: **' + CONFIGEAGLE.captainEagle.attackMin + " - " + CONFIGEAGLE.captainEagle.attackMax}, ${'**DEF: **' + CONFIGEAGLE.captainEagle.defenseMin + " - " + CONFIGEAGLE.captainEagle.defenseMax}, ${'**HP: **' + eagleCHealth}\n`
                 };
             }
             for (let pas = 1; pas < allBoss.eagleKing + 1; pas++) {
@@ -214,6 +217,7 @@ module.exports.run = async (client, message, args) => {
                     eagleKDefense = Math.floor(Math.random() * CONFIGEAGLE.kingEagle.defenseMax) + CONFIGEAGLE.kingEagle.defenseMin
                     eagleKHealth = Math.floor(Math.random() * CONFIGEAGLE.kingEagle.healthMax) + CONFIGEAGLE.kingEagle.healthMin
                     stats.push({name: `King Eagle ${pas}`, eagleKingNumber: pas, attack: eagleKAttack, defense: eagleKDefense, health: eagleKHealth})
+                    allBossDisplay += `**x${pas} Eagle King** - ${'**ATK: **' + CONFIGEAGLE.kingEagle.attackMin + " - " + CONFIGEAGLE.kingEagle.attackMax}, ${'**DEF: **' + CONFIGEAGLE.kingEagle.defenseMin + " - " + CONFIGEAGLE.kingEagle.defenseMax}, ${'**HP: **' + eagleKHealth}\n`
                 };
             }
             for (let pas = 1; pas < allBoss.eagleGod + 1; pas++) {
@@ -222,28 +226,19 @@ module.exports.run = async (client, message, args) => {
                     eagleGDefense = Math.floor(Math.random() * CONFIGEAGLE.godEagle.defenseMax) + CONFIGEAGLE.godEagle.defenseMin
                     eagleGHealth = Math.floor(Math.random() * CONFIGEAGLE.godEagle.healthMax) + CONFIGEAGLE.godEagle.healthMin
                     stats.push({name: `Eagle God ${pas}`, eagleGodNumber: pas, attack: eagleGAttack, defense: eagleGDefense, health: eagleGHealth})
+                    allBossDisplay += `**x${pas} Eagle God** - ${'**ATK: **' + CONFIGEAGLE.godEagle.attackMin + " - " + CONFIGEAGLE.godEagle.attackMax}, ${'**DEF: **' + CONFIGEAGLE.godEagle.defenseMin + " - " + CONFIGEAGLE.godEagle.defenseMax}, ${'**HP: **' + eagleGHealth}\n`
                 };
             }
-            return stats
+            return [stats, allBossDisplay]
         };
 
-        const allBossStats = bossStats(allBoss)
+
+        const allBossStatsDisplay = bossStats(allBoss)
+        const allBossStats = allBossStatsDisplay[0]
+        const allBossText = allBossStatsDisplay[1]
 
 
         // <=== DISPLAY BOSS ===>
-        if(allBoss.eagle > 0) {
-            allBossDisplay += `**x${allBoss.eagle} Eagle** - ${'**ATK: **' + CONFIGEAGLE.eagle.attackMin + " - " + CONFIGEAGLE.eagle.attackMax}, ${'**DEF: **' + CONFIGEAGLE.eagle.defenseMin + " - " + CONFIGEAGLE.eagle.defenseMax}, ${'**HP: **' + CONFIGEAGLE.eagle.healthMin + " - " + CONFIGEAGLE.eagle.healthMax}\n`
-        }
-        if(allBoss.eagleCaptain > 0) {
-            allBossDisplay += `**x${allBoss.eagleCaptain} Eagle Captain** - ${'**ATK: **' + CONFIGEAGLE.captainEagle.attackMin + " - " + CONFIGEAGLE.captainEagle.attackMax}, ${'**DEF: **' + CONFIGEAGLE.captainEagle.defenseMin + " - " + CONFIGEAGLE.captainEagle.defenseMax}, ${'**HP: **' + CONFIGEAGLE.captainEagle.healthMin + " - " + CONFIGEAGLE.captainEagle.healthMax}\n`
-        }
-        if(allBoss.eagleKing > 0) {
-            allBossDisplay += `**x${allBoss.eagleKing} Eagle King** - ${'**ATK: **' + CONFIGEAGLE.kingEagle.attackMin + " - " + CONFIGEAGLE.kingEagle.attackMax}, ${'**DEF: **' + CONFIGEAGLE.kingEagle.defenseMin + " - " + CONFIGEAGLE.kingEagle.defenseMax}, ${'**HP: **' + CONFIGEAGLE.kingEagle.healthMin + " - " + CONFIGEAGLE.kingEagle.healthMax}\n`
-        }
-        if(allBoss.eagleGod > 0) {
-            allBossDisplay += `**x${allBoss.eagleGod} Eagle God** - ${'**ATK: **' + CONFIGEAGLE.godEagle.attackMin + " - " + CONFIGEAGLE.godEagle.attackMax}, ${'**DEF: **' + CONFIGEAGLE.godEagle.defenseMin + " - " + CONFIGEAGLE.godEagle.defenseMax}, ${'**HP: **' + CONFIGEAGLE.godEagle.healthMin + " - " + CONFIGEAGLE.godEagle.healthMax}\n`
-        }
-        
         var statsOwl = ``
 
         for(const owl of allOwl){
@@ -260,7 +255,7 @@ module.exports.run = async (client, message, args) => {
         var embedWaiting = new MessageEmbed()
             .setColor('#9f5fff')
             .setTitle(`Starting the battle in 10 seconds... ⌛`)
-            .setDescription(`🦅 **${underscore("Eagle Stats")}** :\n${allBossDisplay}\n🦉 **${underscore("Owls Stats")}** :\n${statsOwl}`)
+            .setDescription(`🦅 **${underscore("Eagle Stats")}** :\n${allBossText}\n🦉 **${underscore("Owls Stats")}** :\n${statsOwl}`)
             .setTimestamp();
 
         // const messageHandle = await message.channel.send({embeds: [initialEmbed]});
@@ -279,7 +274,9 @@ module.exports.run = async (client, message, args) => {
             function owlDefend(){
                 for(const owl of allOwl){
                     var randomBoss = Math.floor(Math.random() * allBossStats.length);
-                    var damage = (Math.random() * (allBossStats[randomBoss].attack - ((Math.random() * owl.defenseHigh) + owl.defenseLow)));
+
+                    var randomDefense = Math.random() * (owl.defenseHigh - owl.defenseLow + 1) + owl.defenseLow
+                    var damage = Math.random() * (allBossStats[randomBoss].attack - randomDefense);
                     var randomEva = Math.random() * 100
                     
                     if(damage <= 0) damage = 0
@@ -305,7 +302,7 @@ module.exports.run = async (client, message, args) => {
             function owlAttack(){
                 for(const owl of allOwl){
 
-                    var damageOwl = (Math.random() * owl.attackHigh) + owl.attackLow
+                    var damageOwl = (Math.random() * (owl.attackHigh - owl.attackLow + 1)) + owl.attackLow
                     var randomBoss = Math.floor(Math.random() * allBossStats.length);
 
                     if(damageOwl <= 0) damageOwl = 0
@@ -319,7 +316,7 @@ module.exports.run = async (client, message, args) => {
                             messageEmbed += `<@${owl.idOwner}> kills **${allBossStats[randomBoss].name}**\n`
                             allBossStats.splice(allBossStats.indexOf(allBossStats[randomBoss].name), 1);
                         } else {
-                            messageEmbed += `<@${owl.idOwner}> deals ${inlineCode(numStr(damageOwl))} damage to **${allBossStats[randomBoss].name}**\n`
+                            messageEmbed += `<@${owl.idOwner}> deals ${inlineCode(numStr(damageOwl))} damage to **${allBossStats[randomBoss].name}** (Remaining **HP**: ${inlineCode(numStr(allBossStats[randomBoss].health))})\n`
                         }
                     }
                 };
