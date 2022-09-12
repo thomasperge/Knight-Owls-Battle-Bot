@@ -261,9 +261,12 @@ module.exports.run = async (client, message, args) => {
         // const messageHandle = await message.channel.send({embeds: [initialEmbed]});
         message.channel.send({embeds: [initialEmbed]});
 
+        console.log('HERE 0')
         // === Loop Battle ===
         const sleep = ms => new Promise(resolve => setTimeout(resolve, ms));
         (async () => {
+        console.log('HERE 1J')
+
             var roundLoop = 0
             var round = 0
             var messageEmbed = ``
@@ -374,7 +377,7 @@ module.exports.run = async (client, message, args) => {
 
             await sleep(CONFIGCOOLDOWN.cooldows);
             // messageHandle.edit({embeds:[embedWaiting]});
-            message.channel.send({embeds:[embedWaiting]});
+            message.channel.send({embeds:[embedWaiting]});  
             await sleep(CONFIGCOOLDOWN.cooldows);
 
             while(checkWinner(allOwl, allBossStats) == 'nowinner') {

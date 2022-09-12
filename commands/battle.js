@@ -21,7 +21,6 @@ module.exports.run = async (client, message, args) => {
             return [false, 'undefined', 0]
         };
 
-
         if(isNaN(userneeded) || userneeded == undefined || userneeded == ' ' || userneeded == '') return message.reply(`${inlineCode("🪧")} Wrong command, use : ${inlineCode("!battle <# of players needed> <enemies>")}`)
         if(ennemie == undefined || ennemie == ' ') return message.reply(`${inlineCode("🪧")} Wrong command, use : ${inlineCode("!battle <# of players needed> <enemies>")}`)
 
